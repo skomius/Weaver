@@ -1,4 +1,5 @@
 {
+    "outDir": "dist",
     "extends": "./tsconfig.json",
     "exclude": [
         "src/app"
