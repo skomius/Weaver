@@ -2,8 +2,8 @@ module.exports = {
     entry: './src/client/Index.tsx',
 
     output: {
-        filename: 'main.js'
-        //path: __dirname + './src/public/js'
+        filename: 'main.js',
+        path: __dirname + '/dist/public/js'
       },
 
     mode: "production",
