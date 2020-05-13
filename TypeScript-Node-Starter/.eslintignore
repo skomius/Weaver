@@ -3,8 +3,8 @@
 dist/*
 coverage/*
 # data definition files
-**/*.d.ts
+**/**/*.d.ts
 # 3rd party libs
-/src/public/
+/src/server/public/
 # custom definition files
-/src/types/
+/src/server/types/

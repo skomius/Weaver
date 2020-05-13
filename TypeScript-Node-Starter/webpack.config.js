@@ -1,9 +1,9 @@
 module.exports = {
-    entry: './src/client/Index.tsx',
+    entry: "./src/client/Index.tsx",
 
     output: {
-        filename: 'app.js',
-        path: __dirname + '/dist/public/js'
+        filename: "app.js",
+        path: __dirname + "/dist/public/js"
       },
 
     mode: "production",
@@ -25,7 +25,7 @@ module.exports = {
                     {
                         loader: "ts-loader",
                         options: {
-                            configFile : 'tsconfig.client.json'
+                            configFile : "tsconfig.client.json"
                           }
                     }
                 ]
