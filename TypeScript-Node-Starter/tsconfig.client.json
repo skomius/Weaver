@@ -1,7 +1,18 @@
 {
-    "outDir": "dist/public/js",
-    "extends": "./tsconfig.json",
-    "exclude": [
-        "src/server"
-    ]
+    "compilerOptions": {
+        "module": "commonjs",
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "target": "es6",
+        "jsx": "react",
+        "noImplicitAny": true,
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "baseUrl": ".",
+        "paths": {
+            "*": [
+                "node_modules/*",
+            ]
+        }
+    }
 }

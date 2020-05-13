@@ -2,7 +2,7 @@ module.exports = {
     entry: './src/client/Index.tsx',
 
     output: {
-        filename: 'main.js',
+        filename: 'app.js',
         path: __dirname + '/dist/public/js'
       },
 
@@ -23,7 +23,10 @@ module.exports = {
                 exclude: /node_modules/,
                 use: [
                     {
-                        loader: "ts-loader"
+                        loader: "ts-loader",
+                        options: {
+                            configFile : 'tsconfig.client.json'
+                          }
                     }
                 ]
             },

@@ -1,7 +1,25 @@
 {
-    "outDir": "dist",
-    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "module": "commonjs",
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "target": "es6",
+        "noImplicitAny": true,
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "baseUrl": ".",
+        "outDir": "dist",
+        "paths": {
+            "*": [
+                "node_modules/*",
+                "src/server/types/*"
+            ]
+        }
+    },
     "exclude": [
-        "src/app"
+        "src/client"
+    ],
+    "include": [
+        "src/server/**/*"
     ]
 }
