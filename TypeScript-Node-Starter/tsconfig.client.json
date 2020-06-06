@@ -12,7 +12,11 @@
         "paths": {
             "*": [
                 "node_modules/*",
+                "src/server/types/*"
             ]
         }
-    }
+    },
+    "exclude": [
+        "src/server/**/*.ts"
+    ],
 }

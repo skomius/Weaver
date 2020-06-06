@@ -2,7 +2,7 @@ module.exports = {
     entry: "./src/client/Index.tsx",
 
     output: {
-        filename: "app.js",
+        filename: "appClient.js",
         path: __dirname + "/dist/public/js"
       },
 

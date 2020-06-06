@@ -9,6 +9,7 @@ import path from "path";
 import mongoose from "mongoose";
 import passport from "passport";
 import bluebird from "bluebird";
+import { Project } from "./models/Project";
 import { MONGODB_URI, SESSION_SECRET } from "./util/secrets";
 
 const MongoStore = mongo(session);
@@ -18,6 +19,7 @@ import * as homeController from "./controllers/home";
 import * as userController from "./controllers/user";
 import * as apiController from "./controllers/api";
 import * as contactController from "./controllers/contact";
+import * as projectController from "./controllers/project";
 
 
 // API keys and Passport configuration
@@ -35,6 +37,31 @@ mongoose.connect(mongoUrl, { useNewUrlParser: true, useCreateIndex: true, useUni
 ).catch(err => {
     console.log("MongoDB connection error. Please make sure MongoDB is running. " + err);
     // process.exit();
+});
+
+const db = mongoose.connection;
+
+db.once( "open", function(){
+
+    const Projects = [
+        {   
+            name: "lsbsd",
+            description: "jkljljlklj",
+            user: "jllkj"
+        },
+        {   
+            name: "kkkk",
+            description: "kkkk",
+            user: "kkkk"
+        },
+        {   
+            name: "mmmmmm",
+            description: "mmmmm",
+            user: "mmm"
+        },
+    ];
+
+    Project.collection.insertMany(Projects, () => {});
 });
 
 // Express configuration
@@ -84,7 +111,7 @@ app.use(
 /**
  * Primary app routes.
  */
-app.get("/", homeController.index);
+app.get("/home", homeController.index);
 app.get("/login", userController.getLogin);
 app.post("/login", userController.postLogin);
 app.get("/logout", userController.logout);
@@ -101,7 +128,7 @@ app.post("/account/profile", passportConfig.isAuthenticated, userController.post
 app.post("/account/password", passportConfig.isAuthenticated, userController.postUpdatePassword);
 app.post("/account/delete", passportConfig.isAuthenticated, userController.postDeleteAccount);
 app.get("/account/unlink/:provider", passportConfig.isAuthenticated, userController.getOauthUnlink);
-
+app.post("/project/getProjects", projectController.getAll);
 /**
  * API examples routes.
  */
@@ -114,6 +141,10 @@ app.get("/api/facebook", passportConfig.isAuthenticated, passportConfig.isAuthor
 app.get("/auth/facebook", passport.authenticate("facebook", { scope: ["email", "public_profile"] }));
 app.get("/auth/facebook/callback", passport.authenticate("facebook", { failureRedirect: "/login" }), (req, res) => {
     res.redirect(req.session.returnTo || "/");
+});
+
+app.get("*",function (req, res) {
+    res.sendFile("/Index.html", { root: __dirname + "/public"});
 });
 
 export default app;
