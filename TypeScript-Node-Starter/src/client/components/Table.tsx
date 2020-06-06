@@ -9,6 +9,7 @@ export interface ITable {
 
 export class Table extends React.Component<ITable, { data: any[] }> {
 
+
     private headerStyle: any = {
         color: "red",
         borderStyle: "solid"
