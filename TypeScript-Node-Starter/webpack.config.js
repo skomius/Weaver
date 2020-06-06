@@ -11,6 +11,8 @@ module.exports = {
     // Enable sourcemaps for debugging webpack's output.
     devtool: "source-map",
 
+    watch: true,
+
     resolve: {
         // Add '.ts' and '.tsx' as resolvable extensions.
         extensions: [".ts", ".tsx"]
