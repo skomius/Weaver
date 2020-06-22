@@ -3,7 +3,10 @@ import {Project} from "../models/Project";
 import mongoose from "mongoose";
 
 export const getAll = (req: Request, res: Response ) => {  
-    
+    var json = req.body;
+
+    console.log(json)
+
     const all = Project.find({}, (err, projects) =>{
         res.json(projects);
     } ); 

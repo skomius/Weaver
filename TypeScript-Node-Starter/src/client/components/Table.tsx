@@ -32,13 +32,20 @@ export class Table extends React.Component<ITable, { data: any[] }> {
 
     componentDidMount() {
 
-        const { Url, pageSize, pageNumber } = this.props.settings;
+        const { url, pageSize, pageNumber } = this.props.settings;
 
-        const url = new Url(Url);
-        url.searchParams.append("pageSize", pageSize);
-        url.searchParams.append("pageSize", pageSize);
-        url.searchParams.append("pageNumber", pageNumber);
-        fetch(url.href)
+        const postUrl = new Url(url);
+        // urla.searchParams.append("pageSize", pageSize);
+        // urla.searchParams.append("pageSize", pageSize);
+        // urla.searchParams.append("pageNumber", pageNumber);
+
+        fetch(postUrl.href, {
+            method: "POST",
+            body: JSON.stringify({
+                pageSize: 20,
+                pageNumber: 1 
+            })
+        })
             .then(response => {
                 if (response.ok)
                     throw new Error("Network error");

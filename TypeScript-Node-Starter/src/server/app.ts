@@ -83,8 +83,8 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-app.use(lusca.xframe("SAMEORIGIN"));
-app.use(lusca.xssProtection(true));
+// app.use(lusca.xframe("SAMEORIGIN"));
+// app.use(lusca.xssProtection(true));
 app.use((req, res, next) => {
     res.locals.user = req.user;
     next();
@@ -143,8 +143,8 @@ app.get("/auth/facebook/callback", passport.authenticate("facebook", { failureRe
     res.redirect(req.session.returnTo || "/");
 });
 
-app.get("*",function (req, res) {
-    res.sendFile("/Index.html", { root: __dirname + "/public"});
-});
+// app.get("*",function (req, res) {
+//     res.sendFile("/Index.html", { root: __dirname + "/public"});
+// });
 
 export default app;

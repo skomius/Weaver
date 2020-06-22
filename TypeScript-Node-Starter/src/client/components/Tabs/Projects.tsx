@@ -41,7 +41,7 @@ export class Projects extends React.Component<ITab, {}>{
 
 
     Settings: any = {
-        Url: "Project/GetAll"
+        url: "Project/GetAll"
     }
 
     render() {
