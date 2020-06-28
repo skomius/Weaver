@@ -13,6 +13,7 @@ export class Table extends React.Component<ITable, { data: any[] }> {
     private headerStyle: any = {
         color: "red",
         borderStyle: "solid"
+        
     }
 
     private cellStyle: any = {
@@ -47,7 +48,7 @@ export class Table extends React.Component<ITable, { data: any[] }> {
             })
         })
             .then(response => {
-                if (response.ok)
+                if (!response.ok)
                     throw new Error("Network error");
                 return response.json();
             })
@@ -65,13 +66,13 @@ export class Table extends React.Component<ITable, { data: any[] }> {
 
         return (
             <div>
-                <table>
-                    <thead style={this.headerStyle}>
+                <table className="table">
+                    <thead className="thead-dark">
                         <tr>
                             {
                                 this.props.headers.map((header: any, index: any) => {
                                     return (
-                                        <th key={index}>{header.name}</th>
+                                        <th scope="col" key={index}>{header.Acessor}</th>
                                     );
                                 })}
                         </tr>
@@ -79,9 +80,9 @@ export class Table extends React.Component<ITable, { data: any[] }> {
                     <tbody>
                         {this.state.data.map((row: any) => {
                             return (
-                                <tr key={row.id}>{row.map((value: any, index: any) => {
+                                <tr key={row._id}>{Object.entries(row).map((value: [string, any], index: any) => {
                                     return (
-                                        <td key={index} >{value}</td>
+                                        <td key={index} >{value[1]}</td>
                                     );
                                 })}
                                 </tr>
