@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 export const getAll = (req: Request, res: Response ) => {  
     var json = req.body;
 
-    console.log(json)
+    console.log(req.body)
 
     const all = Project.find({}, (err, projects) =>{
         res.json(projects);

@@ -33,7 +33,7 @@ export class Tabs extends React.Component<ITabs, {activeTabTitle: string}>{
                         if(child.props.label === this.state.activeTabTitle)
                             classname = classname + " active"
                         return (
-                        <li key={child.props.label} className = "nav-item" onClick={this.handleClick} ><a className={classname} href="#">{child.props.label}</a></li>
+                        <li key={child.props.label} className = "nav-item" onClick={this.handleClick} ><a className={classname} >{child.props.label}</a></li>
                         )
                     } )}
                 </ol>

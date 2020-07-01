@@ -42,6 +42,9 @@ export class Table extends React.Component<ITable, { data: any[] }> {
 
         fetch(postUrl.href, {
             method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify({
                 pageSize: 20,
                 pageNumber: 1 
