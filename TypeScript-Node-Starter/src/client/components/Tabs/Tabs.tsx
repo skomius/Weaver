@@ -26,14 +26,14 @@ export class Tabs extends React.Component<ITabs, { activeTabTitle: string }>{
     render() {
 
         return (
-            <div className="tab-list">
-                <ol>
+            <div className = "py-5">
+                <ol className="nav nav-tabs">
                     {this.props.children.map((child: any) => {
-                        let classname = "tab-list-item"
-                        if (child.props.label === this.state.activeTabTitle)
-                            classname = classname + " tab-list-active"
+                        var classname = "nav-link"
+                        if(child.props.label === this.state.activeTabTitle)
+                            classname = classname + " active"
                         return (
-                            <li key={child.props.label} className={classname} onClick={this.handleClick} >{child.props.label}</li>
+                        <li key={child.props.label} className = "nav-item" onClick={this.handleClick} ><a className={classname} >{child.props.label}</a></li>
                         )
                     })}
                 </ol>

@@ -36,17 +36,32 @@ export class Projects extends React.Component<ITab, {}>{
             Link: false,
             width: 150,
             show: true,
+        },
+        {
+            Header: "TestTest",
+            Acessor: "User",
+            Type: "string",
+            Link: false,
+            width: 150,
+            show: true,
         }
     ]
 
 
     Settings: any = {
-        Url: "Project/GetAll"
+        url: "project/getProjects"
     }
 
     render() {
         return (
-            <Table headers={this.Headers} settings={this.Settings} />
+            <div className="py-3">
+                <div className="col-8">
+                    <Table headers={this.Headers} settings={this.Settings} />
+                </div>
+                <div className="clo-4">
+
+                </div>
+            </div>
         )
     }
 }   

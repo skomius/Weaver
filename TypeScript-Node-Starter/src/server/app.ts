@@ -32,7 +32,7 @@ const app = express();
 const mongoUrl = MONGODB_URI;
 mongoose.Promise = bluebird;
 
-mongoose.connect(mongoUrl, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true } ).then(
+mongoose.connect(mongoUrl, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true }).then(
     () => { /** ready to use. The `mongoose.connect()` promise resolves to undefined. */ },
 ).catch(err => {
     console.log("MongoDB connection error. Please make sure MongoDB is running. " + err);
@@ -41,28 +41,28 @@ mongoose.connect(mongoUrl, { useNewUrlParser: true, useCreateIndex: true, useUni
 
 const db = mongoose.connection;
 
-db.once( "open", function(){
+Project.collection.deleteMany({});
 
-    const Projects = [
-        {   
-            name: "lsbsd",
-            description: "jkljljlklj",
-            user: "jllkj"
-        },
-        {   
-            name: "kkkk",
-            description: "kkkk",
-            user: "kkkk"
-        },
-        {   
-            name: "mmmmmm",
-            description: "mmmmm",
-            user: "mmm"
-        },
-    ];
+const Projects = [
+    {
+        name: "lsbsd",
+        description: "jkljljlklj",
+        user: "jllkj"
+    },
+    {
+        name: "kkkk",
+        description: "kkkk",
+        user: "kkkk"
+    },
+    {
+        name: "mmmmmm",
+        description: "mmmmm",
+        user: "mmm"
+    },
+];
 
-    Project.collection.insertMany(Projects, () => {});
-});
+Project.collection.insertMany(Projects, () => { });
+
 
 // Express configuration
 app.set("port", process.env.PORT || 3000);
@@ -70,7 +70,7 @@ app.set("views", path.join(__dirname, "../views"));
 app.set("view engine", "pug");
 app.use(compression());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({
     resave: true,
     saveUninitialized: true,
@@ -83,8 +83,8 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-app.use(lusca.xframe("SAMEORIGIN"));
-app.use(lusca.xssProtection(true));
+// app.use(lusca.xframe("SAMEORIGIN"));
+// app.use(lusca.xssProtection(true));
 app.use((req, res, next) => {
     res.locals.user = req.user;
     next();
@@ -92,13 +92,13 @@ app.use((req, res, next) => {
 app.use((req, res, next) => {
     // After successful login, redirect back to the intended page
     if (!req.user &&
-    req.path !== "/login" &&
-    req.path !== "/signup" &&
-    !req.path.match(/^\/auth/) &&
-    !req.path.match(/\./)) {
+        req.path !== "/login" &&
+        req.path !== "/signup" &&
+        !req.path.match(/^\/auth/) &&
+        !req.path.match(/\./)) {
         req.session.returnTo = req.path;
     } else if (req.user &&
-    req.path == "/account") {
+        req.path == "/account") {
         req.session.returnTo = req.path;
     }
     next();
@@ -143,8 +143,8 @@ app.get("/auth/facebook/callback", passport.authenticate("facebook", { failureRe
     res.redirect(req.session.returnTo || "/");
 });
 
-app.get("*",function (req, res) {
-    res.sendFile("/Index.html", { root: __dirname + "/public"});
-});
+// app.get("*",function (req, res) {
+//     res.sendFile("/Index.html", { root: __dirname + "/public"});
+// });
 
 export default app;

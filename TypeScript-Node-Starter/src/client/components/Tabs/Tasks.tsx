@@ -10,8 +10,7 @@ export class Tasks extends React.Component<ITab, {}>{
 
     render() {
         return (
-            <div>
-                <p>All tasks</p>
+            <div className="py-5 text-center">
                 <Clock>
                 </Clock>
             </div>
