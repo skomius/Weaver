@@ -83,7 +83,7 @@ export class Table extends React.Component<ITable, { data: any[] }> {
                     <tbody>
                         {this.state.data.map((row: any) => {
                             return (
-                                <tr key={row._id}>{Object.entries(row).map((value: [string, any], index: any) => {
+                                <tr key={row._id} onClick= {} >{Object.entries(row).map((value: [string, any], index: any) => {
                                     return (
                                         <td key={index} >{value[1]}</td>
                                     );

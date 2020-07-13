@@ -3,13 +3,15 @@ import { ITab } from "./Tabs"
 import { Table } from "../Table"
 import { Url } from "../Utility"
 
-export class Projects extends React.Component<ITab, {}>{
+export class Projects extends React.Component<ITab, {projectPage: boolean}>{
 
     private data: any;
 
     constructor(props: ITab) {
         super(props)
-
+        this.state = {
+            projectPage: false
+        }
     }
 
     Headers: any = [
@@ -49,10 +51,15 @@ export class Projects extends React.Component<ITab, {}>{
 
 
     Settings: any = {
-        url: "project/getProjects"
+        url: "project/getProjects",
+        rowClickHandler: (evn: Event) => {
+            evn.
+        }
     }
 
     render() {
+
+        if()
         return (
             <div className="py-3">
                 <div className="col-8">

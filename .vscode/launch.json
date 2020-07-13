@@ -5,10 +5,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Attach to Process",
-            "type": "node",
+            "name": ".NET Core Attach",
+            "type": "coreclr",
             "request": "attach",
-            "port": 9229
+            "processId": "${command:pickProcess}"
         }
     ]
 }

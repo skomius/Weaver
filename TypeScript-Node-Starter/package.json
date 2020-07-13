@@ -55,6 +55,7 @@
         "pug": "^2.0.4",
         "react": "16.13.1",
         "react-dom": "16.13.1",
+        "ts-nats": "^1.2.15",
         "winston": "^3.2.1"
     },
     "devDependencies": {
