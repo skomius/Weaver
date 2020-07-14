@@ -52,14 +52,13 @@ export class Projects extends React.Component<ITab, {projectPage: boolean}>{
 
     Settings: any = {
         url: "project/getProjects",
-        rowClickHandler: (evn: Event) => {
-            evn.
+        rowClickHandler: (evn: any) => {
+            evn.target.getAttribute("id")
         }
     }
 
     render() {
 
-        if()
         return (
             <div className="py-3">
                 <div className="col-8">
