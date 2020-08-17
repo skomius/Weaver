@@ -1,7 +1,7 @@
 import * as React from "react"
 import { ITab } from "./Tabs"
 import { Table } from "../Table"
-import { Url } from "../Utility"
+import { CSSTransition } from "react-transition-group";
 
 export class Projects extends React.Component<ITab, {projectPage: boolean}>{
 
@@ -58,14 +58,13 @@ export class Projects extends React.Component<ITab, {projectPage: boolean}>{
     }
 
     render() {
-
         return (
-            <div className="py-3">
+            <div className="py-3 fade-in">
                 <div className="col-8">
                     <Table headers={this.Headers} settings={this.Settings} />
                 </div>
                 <div className="clo-4">
-
+                
                 </div>
             </div>
         )

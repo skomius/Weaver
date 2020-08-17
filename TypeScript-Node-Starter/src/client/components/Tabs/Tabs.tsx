@@ -47,5 +47,4 @@ export class Tabs extends React.Component<ITabs, { activeTabTitle: string }>{
             </div>
         )
     }
-
 }
