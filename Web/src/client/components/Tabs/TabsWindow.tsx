@@ -17,7 +17,7 @@ export class TabsWindow extends React.Component<{}, {}>{
         return (
             <BrowserRouter>
                 <div className = "py-5">
-                    <ol  className="nav nav-tabs">
+                    <ol className="nav nav-tabs">
                         <li>
                             <NavLink to="/Projects" className="nav-link" activeClassName="active" >Projects</NavLink>
                         </li>
