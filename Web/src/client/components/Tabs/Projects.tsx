@@ -1,13 +1,12 @@
 import * as React from "react"
-import { ITab } from "./Tabs"
 import { Table } from "../Table"
 import { CSSTransition } from "react-transition-group";
 
-export class Projects extends React.Component<ITab, { projectPage: boolean }>{
+export class Projects extends React.Component<{}, { projectPage: boolean }>{
 
     private data: any;
 
-    constructor(props: ITab) {
+    constructor(props: any) {
         super(props)
         this.state = {
             projectPage: false
