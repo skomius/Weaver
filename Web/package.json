@@ -1,5 +1,5 @@
 {
-    "name":"web",
+    "name": "web",
     "version": "0.1.0",
     "description": "",
     "scripts": {
@@ -23,6 +23,7 @@
         "watch-debug": "concurrently -k -p \"[{name}]\" -n \"Sass,TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold,orange.bold\" \"npm run watch-sass\" \"npm run watch-ts\" \"npm run serve-debug\" \"npm run watch-build-ts-client\""
     },
     "dependencies": {
+        "@babel/runtime": "^7.11.2",
         "@types/react": "^16.9.35",
         "@types/react-dom": "^16.9.8",
         "@types/react-router-dom": "^5.1.5",
@@ -31,6 +32,7 @@
         "bcrypt-nodejs": "^0.0.3",
         "bluebird": "^3.5.5",
         "body-parser": "^1.19.0",
+        "chokidar": "^3.4.2",
         "compression": "^1.7.4",
         "concurrently": "^5.3.0",
         "connect-mongo": "^3.0.0",
@@ -95,12 +97,13 @@
         "node-sass": "^4.13.0",
         "nodemon": "^1.19.2",
         "shelljs": "^0.8.3",
+        "source-map-loader": "^1.0.2",
         "supertest": "^4.0.2",
         "ts-jest": "^24.1.0",
         "ts-loader": "^7.0.4",
         "ts-node": "^8.4.1",
         "typescript": "^3.6.3",
-        "webpack": "^4.44.1",
+        "webpack": "^4.4.1",
         "webpack-cli": "^3.3.11"
     }
 }

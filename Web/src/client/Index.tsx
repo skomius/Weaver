@@ -1,7 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-
-import { TabsWindow } from "./components/Tabs/TabsWindow";
+import { TabsWindow } from "./components/TabsWindow";
 
 ReactDOM.render(
     <TabsWindow />,

@@ -1,7 +1,6 @@
 import * as React from "react"
-import { Clock } from "./Clock"
-
-export class Tasks extends React.Component<{}, {}>{
+ 
+export class Logs extends React.Component<{}, {}>{
 
     render() {
         return (

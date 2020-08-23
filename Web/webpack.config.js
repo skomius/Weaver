@@ -12,7 +12,7 @@ module.exports = {
 
     resolve: {
         // Add '.ts' and '.tsx' as resolvable extensions.
-        extensions: [".ts", ".tsx"]
+        extensions: [".ts", ".tsx", ".js", ".jsx"]
     },
 
     module: {
@@ -39,6 +39,12 @@ module.exports = {
 
     externals: {
         "react": "React",
-        "react-dom": "ReactDOM"
+        "react-dom": "ReactDOM",
+        "prop-types": {
+            root: 'PropTypes',
+            commonjs2: 'prop-types',
+            commonjs: 'prop-types',
+            amd: 'prop-types',
+        }
     }
 };

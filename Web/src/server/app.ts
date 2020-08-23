@@ -89,6 +89,7 @@ app.use((req, res, next) => {
     res.locals.user = req.user;
     next();
 });
+
 app.use((req, res, next) => {
     // After successful login, redirect back to the intended page
     if (!req.user &&
@@ -142,6 +143,14 @@ app.get("/auth/facebook", passport.authenticate("facebook", { scope: ["email", "
 app.get("/auth/facebook/callback", passport.authenticate("facebook", { failureRedirect: "/login" }), (req, res) => {
     res.redirect(req.session.returnTo || "/");
 });
+
+app.get('/*', function(req, res) {
+    res.sendFile(path.join(__dirname, "public/index.html"), function(err) {
+      if (err) {
+        res.status(500).send(err)
+      }
+    })
+  })
 
 // app.get("*",function (req, res) {
 //     res.sendFile("/Index.html", { root: __dirname + "/public"});
