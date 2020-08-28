@@ -50,9 +50,9 @@ export class Projects extends React.Component<{}, { projectPage: boolean }>{
         }
     ]
 
-
     Settings: any = {
         url: "project/getProjects",
+        pageSize: 20,
         rowClickHandler: (evn: any) => {
             evn.target.getAttribute("id")
         }

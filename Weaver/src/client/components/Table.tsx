@@ -1,19 +1,18 @@
 /* eslint-disable @typescript-eslint/interface-name-prefix */
 import * as React from "react";
 import { Url } from "./Utility";
+import { Pagination } from "./Tabs/Pagination";
 
 export interface ITable {
     headers: any[];
     settings: any;
 }
 
-export class Table extends React.Component<ITable, { data: any[] }> {
-
+export class Table extends React.Component<ITable, { data: any[], pageNumber: number }> {
 
     private headerStyle: any = {
         color: "red",
         borderStyle: "solid"
-        
     }
 
     private cellStyle: any = {
@@ -27,18 +26,21 @@ export class Table extends React.Component<ITable, { data: any[] }> {
     constructor(props: any) {
         super(props);
         this.state = {
-            data: []
+            data: [],
+            pageNumber: 0
         };
     }
 
     componentDidMount() {
 
-        const { url, pageSize, pageNumber } = this.props.settings;
+
+    }
+
+    getProjects(pageNumber: number) {
+
+        const { url, pageSize } = this.props.settings;
 
         const postUrl = new Url(url);
-        // urla.searchParams.append("pageSize", pageSize);
-        // urla.searchParams.append("pageSize", pageSize);
-        // urla.searchParams.append("pageNumber", pageNumber);
 
         fetch(postUrl.href, {
             method: "POST",
@@ -46,8 +48,8 @@ export class Table extends React.Component<ITable, { data: any[] }> {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                pageSize: 20,
-                pageNumber: 1 
+                pageSize: pageSize,
+                pageNumber: this.state.pageNumber
             })
         })
             .then(response => {
@@ -56,14 +58,14 @@ export class Table extends React.Component<ITable, { data: any[] }> {
                 return response.json();
             })
             .then(res => this.setState({
-                data: res
+                data: res,
+                pageNumber: res.pageNumber
             })
             )
             .catch(error => {
                 console.error(error.message);
             });
     }
-
 
     render() {
 
@@ -72,12 +74,11 @@ export class Table extends React.Component<ITable, { data: any[] }> {
                 <table className="table">
                     <thead className="thead-dark">
                         <tr>
-                            {
-                                this.props.headers.map((header: any, index: any) => {
-                                    return (
-                                        <th scope="col" key={index}>{header.Acessor}</th>
-                                    );
-                                })}
+                            {this.props.headers.map((header: any, index: any) => {
+                                return (
+                                    <th scope="col" key={index}>{header.Acessor}</th>
+                                );
+                            })}
                         </tr>
                     </thead>
                     <tbody>
@@ -93,6 +94,7 @@ export class Table extends React.Component<ITable, { data: any[] }> {
                         })}
                     </tbody>
                 </table>
+                <Pagination pageNumber={this.state.pageNumber} handleClick={this.getProjects} />
             </div>
         );
     }

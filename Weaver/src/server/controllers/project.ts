@@ -7,20 +7,9 @@ export const getAll = async (req: Request, res: Response, next: any ) => {
 
     console.log(req.body);
 
-    try {
-        var con = await connectNats();
-    } catch (error) {
-      return next(error)   
-    }
-
-    con.publish('test', '{ pica: 5, sriuba: 3}')
-    console.log("published") 
-    
-    con.publish('project', '{ pica: 5, sriuba: 3}')
-    console.log("published") 
+    const { pageNumber, pageSize } = req.body;
 
     const all = Project.find({}, (err, projects) =>{
         res.json(projects);
-    } ); 
-
+    } ).skip(pageNumber - 1 * pageSize).limit(pageSize); 
 };
