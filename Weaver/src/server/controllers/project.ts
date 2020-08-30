@@ -1,15 +1,29 @@
-import {Request, Response} from "express";
-import {Project} from "../models/Project";
+import { Request, Response } from "express";
+import mongoose, { Collection } from "mongoose";
+import { Project } from "../models/Project";
 import { connectNats } from "../util/nats"
 
-export const getAll = async (req: Request, res: Response, next: any ) => {  
-    var json = req.body;
+export const getAll = async (req: Request, res: Response, next: any) => {
+   
+    const { pageIndex, pageSize } = req.body;
 
-    console.log(req.body);
+    let pagesNumber: number
+    let data: any
 
-    const { pageNumber, pageSize } = req.body;
+    var session = await mongoose.startSession()
 
-    const all = Project.find({}, (err, projects) =>{
-        res.json(projects);
-    } ).skip(pageNumber - 1 * pageSize).limit(pageSize); 
+    session.startTransaction();
+    const numberOfProjects = await Project.collection.countDocuments({}, { session: session })
+    pagesNumber = Math.ceil(numberOfProjects / pageSize)
+    data = await Project.find({}).skip(pageIndex * pageSize).limit(pageSize).session(session);
+    await session.commitTransaction();
+    session.endSession();
+
+    console.log(pagesNumber, pageIndex, pageSize)
+
+    res.json({ pagesNumber: pagesNumber, data: data })
 };
+
+export const getDumentPage = async(model: mongoose.Document) => {
+    
+}

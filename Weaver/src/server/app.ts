@@ -39,29 +39,19 @@ mongoose.connect(mongoUrl, { useNewUrlParser: true, useCreateIndex: true, useUni
     // process.exit();
 });
 
-const db = mongoose.connection;
-
 Project.collection.deleteMany({});
 
-const Projects = [
-    {
-        name: "lsbsd",
-        description: "jkljljlklj",
-        user: "jllkj"
-    },
-    {
-        name: "kkkk",
-        description: "kkkk",
-        user: "kkkk"
-    },
-    {
-        name: "mmmmmm",
-        description: "mmmmm",
-        user: "mmm"
-    },
-];
+let projects = [];
 
-Project.collection.insertMany(Projects, () => { });
+for (var i = 0; i < 101; i++) {
+    projects.push({
+        name: "Test",
+        description: "Test",
+        user: "Test"
+    })
+}
+
+Project.collection.insertMany(projects, () => { });
 
 
 // Express configuration
@@ -144,13 +134,13 @@ app.get("/auth/facebook/callback", passport.authenticate("facebook", { failureRe
     res.redirect(req.session.returnTo || "/");
 });
 
-app.get('/*', function(req, res) {
-    res.sendFile(path.join(__dirname, "public/index.html"), function(err) {
-      if (err) {
-        res.status(500).send(err)
-      }
+app.get('/*', function (req, res) {
+    res.sendFile(path.join(__dirname, "public/index.html"), function (err) {
+        if (err) {
+            res.status(500).send(err)
+        }
     })
-  })
+})
 
 // app.get("*",function (req, res) {
 //     res.sendFile("/Index.html", { root: __dirname + "/public"});

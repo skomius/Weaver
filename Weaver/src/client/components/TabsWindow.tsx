@@ -16,7 +16,7 @@ export class TabsWindow extends React.Component<{}, {}>{
     render() {
 
         return (
-             <div>
+             <div className="container">
                 <Router>
                     <div className="py-5">
                         <ol className="nav nav-tabs">

@@ -1,2 +1,2 @@
-Set-Location ./web 
+Set-Location ./Weaver  
 npm run watch-debug

@@ -8,7 +8,10 @@ export interface ITable {
     settings: any;
 }
 
-export class Table extends React.Component<ITable, { data: any[], pageNumber: number }> {
+export class Table extends React.Component<ITable, { data: any[], pageIndex: number, pagesNumber: number}> {
+
+
+
 
     private headerStyle: any = {
         color: "red",
@@ -27,16 +30,22 @@ export class Table extends React.Component<ITable, { data: any[], pageNumber: nu
         super(props);
         this.state = {
             data: [],
-            pageNumber: 0
+            pageIndex: 0,
+            pagesNumber: 0
         };
+
+        this.getProjects = this.getProjects.bind(this);
     }
 
     componentDidMount() {
-
-
+        this.getProjects(0)
     }
 
-    getProjects(pageNumber: number) {
+    getProjects(pageIndex: number) {
+
+        if(pageIndex < 0){
+            return
+        }
 
         const { url, pageSize } = this.props.settings;
 
@@ -49,7 +58,7 @@ export class Table extends React.Component<ITable, { data: any[], pageNumber: nu
             },
             body: JSON.stringify({
                 pageSize: pageSize,
-                pageNumber: this.state.pageNumber
+                pageIndex: pageIndex
             })
         })
             .then(response => {
@@ -58,8 +67,9 @@ export class Table extends React.Component<ITable, { data: any[], pageNumber: nu
                 return response.json();
             })
             .then(res => this.setState({
-                data: res,
-                pageNumber: res.pageNumber
+                data: res.data,
+                pagesNumber: res.pagesNumber,
+                pageIndex: pageIndex
             })
             )
             .catch(error => {
@@ -94,7 +104,7 @@ export class Table extends React.Component<ITable, { data: any[], pageNumber: nu
                         })}
                     </tbody>
                 </table>
-                <Pagination pageNumber={this.state.pageNumber} handleClick={this.getProjects} />
+                <Pagination  handleClick={this.getProjects} pageIndex={this.state.pageIndex}  pagesNumber={this.state.pagesNumber} />
             </div>
         );
     }
