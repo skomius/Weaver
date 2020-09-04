@@ -1,8 +1,9 @@
 import * as React from "react"
 import { Table } from "../Table"
 import {
-   Link  
+    Link
 } from "react-router-dom"
+import { ProjectForm } from "./ProjectForm";
 
 export class Projects extends React.Component<{}, { projectPage: boolean }>{
 
@@ -13,6 +14,8 @@ export class Projects extends React.Component<{}, { projectPage: boolean }>{
         this.state = {
             projectPage: false
         }
+
+        this.rowClickHandler = this.rowClickHandler.bind(this);
     }
 
     Headers: any = [
@@ -50,29 +53,40 @@ export class Projects extends React.Component<{}, { projectPage: boolean }>{
         }
     ]
 
+    rowClickHandler = (evn: any, i: string) => {
+        console.log(evn.target);
+        console.log(i);
+        this.setState({
+            projectPage: true
+        });
+    };
+
     Settings: any = {
         url: "project/getProjects",
         pageSize: 20,
-        rowClickHandler: (evn: any) => {
-            evn.target.getAttribute("id")
-        }
+        rowClickHandler: this.rowClickHandler
     }
 
     render() {
-        
-        return (
-            <div>
-                <div className="container">
-                    <Link to="/ProjectForm"><button type="button" className="btn btn-primary mt-3">New</button></Link>
-                </div>
-                <div className="py-3 fade-in"> 
-                    <div className="col-8">
+
+        if (this.state.projectPage)
+            var content = <ProjectForm/>
+        else
+            content =
+                <div>
+                    <div className="container">
+                        <Link to="/ProjectForm"><button type="button" className="btn btn-primary mt-3">New</button></Link>
+                    </div>
+                    <div className="container py-3 fade-in" >
                         <Table headers={this.Headers} settings={this.Settings} />
                     </div>
-                    <div className="col-4">
-
-                    </div>
                 </div>
+
+
+        return (
+            <div className="container py-3 fade-in">
+                <div className="col-8">{content}</div>
+                <div className="col-4"></div>
             </div>
         )
     }
