@@ -33,7 +33,7 @@ export class TabsWindow extends React.Component<{}, {}>{
                         <Switch>
                                 <Route exact path="/" children={<Login />} />
                                 <Route exact path="/Tasks" children={<Tasks />} />
-                                <Route exact path="/ProjectForm" children={<ProjectForm />} />
+                                <Route exact path="/Projects/ProjectForm" children={<ProjectForm />} />
                                 <Route exact path="/Logs" children={<Logs />} />
                                 <Route exact path="/Projects" children={<Projects />} />
                         </Switch>
