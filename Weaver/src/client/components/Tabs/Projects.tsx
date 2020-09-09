@@ -3,18 +3,16 @@ import { Table } from "../Table"
 import {
     Link
 } from "react-router-dom"
-import { ProjectView } from "./ProjectView";
-import { stringify } from "querystring";
+import { ProjectForm } from "./ProjectForm";
 
-export class Projects extends React.Component<{}, { projectPage: boolean, id: string }>{
+export class Projects extends React.Component<{}, { projectPage: boolean }>{
 
     private data: any;
 
     constructor(props: any) {
         super(props)
         this.state = {
-            projectPage: false,
-            id: ""
+            projectPage: false
         }
 
         this.rowClickHandler = this.rowClickHandler.bind(this);
@@ -55,11 +53,11 @@ export class Projects extends React.Component<{}, { projectPage: boolean, id: st
         }
     ]
 
-    rowClickHandler = (evn: any, id: string) => {
-        history.pushState({}, "", "project/getProject")
+    rowClickHandler = (evn: any, i: string) => {
+        console.log(evn.target);
+        console.log(i);
         this.setState({
-            projectPage: true,
-            id: id 
+            projectPage: true
         });
     };
 
@@ -72,12 +70,12 @@ export class Projects extends React.Component<{}, { projectPage: boolean, id: st
     render() {
 
         if (this.state.projectPage)
-            var content = <ProjectView id={this.state.id} />
+            var content = <ProjectForm/>
         else
             content =
                 <div>
                     <div className="container">
-                        <Link to="/Projects/ProjectForm"><button type="button" className="btn btn-primary mt-3">New</button></Link>
+                        <Link to="/ProjectForm"><button type="button" className="btn btn-primary mt-3">New</button></Link>
                     </div>
                     <div className="container py-3 fade-in" >
                         <Table headers={this.Headers} settings={this.Settings} />

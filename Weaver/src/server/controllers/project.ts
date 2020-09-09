@@ -22,7 +22,7 @@ export const getAll = async (req: Request, res: Response, next: any) => {
     await session.commitTransaction();
     session.endSession();
 
-    await res.json({ pagesNumber: pagesNumber, data: data })
+    res.json({ pagesNumber: pagesNumber, data: data })
 };
 
 export const create = async (req: Request, res: Response, next: any) => {
@@ -35,14 +35,6 @@ export const create = async (req: Request, res: Response, next: any) => {
     })
 
 };
-
-export const getProject = async (req: Request, res: Response, next: any) => {
-
-    console.log(req.query.id)
-    const project = await Project.findById(req.query.id)
-    //res.setHeader("Content-Type", "application/json")
-    await res.json(project)
-} 
 
 export const getDocumentPage = async(model: mongoose.Document) => {
     
