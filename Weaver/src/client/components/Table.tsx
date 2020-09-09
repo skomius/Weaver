@@ -30,13 +30,13 @@ export class Table extends React.Component<ITable, { data: any[], pageIndex: num
             data: [],
             pageIndex: 0,
             pagesNumber: 0
-        };
-
+        }
         this.getProjects = this.getProjects.bind(this);
     }
 
     componentDidMount() {
-        this.getProjects(0)
+        const firstPage = 0
+        this.getProjects(firstPage)
     }
 
     getProjects(pageIndex: number) {
@@ -46,9 +46,7 @@ export class Table extends React.Component<ITable, { data: any[], pageIndex: num
         }
 
         const { url, pageSize } = this.props.settings;
-
         const postUrl = new Url(url);
-
 
         axios.post(postUrl.href, { pageSize: pageSize, pageIndex: pageIndex })
             .then(res => this.setState({
