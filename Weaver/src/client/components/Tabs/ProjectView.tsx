@@ -1,7 +1,8 @@
 import * as React from "react"
 import axios from "axios"
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { Projects } from "./Projects"
+import { use } from "passport"
 
 class project{
     name: string
@@ -9,7 +10,7 @@ class project{
     user:string
 } 
 
-export class ProjectView extends React.Component<{id: string}, {project: project}>{
+export class ProjectView extends React.Component<any,{project: project}>{
 
     private project: project
 
@@ -24,7 +25,7 @@ export class ProjectView extends React.Component<{id: string}, {project: project
 
         console.log("start")
 
-        axios.get<project>("project/getProject", {params: {id: this.props.id}} )
+        axios.get<project>("project/getProject", {params:{id: this.getid()}} )
             .then(res => {
                 this.setState({
                     project: res.data
@@ -32,6 +33,11 @@ export class ProjectView extends React.Component<{id: string}, {project: project
             }).catch( e => {
                 console.error(e)
             })
+    }
+
+    getid(){
+        const { id } = this.props.location.search;
+        return id;
     }
 
     render() {

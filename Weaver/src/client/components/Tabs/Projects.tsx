@@ -1,12 +1,14 @@
 import * as React from "react"
 import { Table } from "../Table"
 import {
-    Link
+    Link,
 } from "react-router-dom"
 import { ProjectView } from "./ProjectView";
 import { stringify } from "querystring";
+import {History} from "history"
 
-export class Projects extends React.Component<{}, { projectPage: boolean, id: string }>{
+
+export class Projects extends React.Component<any, { projectPage: boolean, id: string }>{
 
     private data: any;
 
@@ -17,6 +19,7 @@ export class Projects extends React.Component<{}, { projectPage: boolean, id: st
             id: ""
         }
 
+        console.log(this.props.location.search)
         this.rowClickHandler = this.rowClickHandler.bind(this);
     }
 
@@ -56,7 +59,7 @@ export class Projects extends React.Component<{}, { projectPage: boolean, id: st
     ]
 
     rowClickHandler = (evn: any, id: string) => {
-        history.pushState({}, "", "project/getProject")
+        history.pushState({id: id}, "", "project/getProject/" + id)
         this.setState({
             projectPage: true,
             id: id 
@@ -72,7 +75,7 @@ export class Projects extends React.Component<{}, { projectPage: boolean, id: st
     render() {
 
         if (this.state.projectPage)
-            var content = <ProjectView id={this.state.id} />
+            var content = <ProjectView />
         else
             content =
                 <div>

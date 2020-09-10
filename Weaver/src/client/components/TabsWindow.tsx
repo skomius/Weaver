@@ -10,6 +10,7 @@ import {
     Route,
     NavLink
 } from "react-router-dom"
+import { ProjectView } from "./Tabs/ProjectView"
 
 export class TabsWindow extends React.Component<{}, {}>{
 
@@ -35,7 +36,8 @@ export class TabsWindow extends React.Component<{}, {}>{
                                 <Route exact path="/Tasks" children={<Tasks />} />
                                 <Route exact path="/Projects/ProjectForm" children={<ProjectForm />} />
                                 <Route exact path="/Logs" children={<Logs />} />
-                                <Route exact path="/Projects" children={<Projects />} />
+                                <Route exact path="/Projects" render = {(props) => (<Projects {...props}/>)} />
+                                <Route exact path="/Projects/:id" render = {(props) => (<ProjectView {...props}/>)} />
                         </Switch>
                     </div>
                 </Router>
