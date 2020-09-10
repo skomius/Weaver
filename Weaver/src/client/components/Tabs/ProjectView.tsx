@@ -10,7 +10,7 @@ class project{
     user:string
 } 
 
-export class ProjectView extends React.Component<any,{project: project}>{
+export class ProjectView extends React.Component<any, {project: project}>{
 
     private project: project
 
