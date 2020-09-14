@@ -5,21 +5,16 @@ import {
 } from "react-router-dom"
 import { ProjectView } from "./ProjectView";
 import { stringify } from "querystring";
-import {History} from "history"
+import { History } from "history"
 
 
-export class Projects extends React.Component<any, { projectPage: boolean, id: string }>{
+export class Projects extends React.Component<any, {}>{
 
     private data: any;
 
     constructor(props: any) {
         super(props)
-        this.state = {
-            projectPage: false,
-            id: ""
-        }
-
-        console.log(this.props.location.search)
+  
         this.rowClickHandler = this.rowClickHandler.bind(this);
     }
 
@@ -59,11 +54,10 @@ export class Projects extends React.Component<any, { projectPage: boolean, id: s
     ]
 
     rowClickHandler = (evn: any, id: string) => {
-        history.pushState({id: id}, "", "project/getProject/" + id)
-        this.setState({
-            projectPage: true,
-            id: id 
-        });
+        this.props.history.push({
+            pathname: '/project/getProject',
+            search: '?id=' + id,
+        })
     };
 
     Settings: any = {
@@ -74,13 +68,11 @@ export class Projects extends React.Component<any, { projectPage: boolean, id: s
 
     render() {
 
-        if (this.state.projectPage)
-            var content = <ProjectView />
-        else
-            content =
+      
+          var  content =
                 <div>
                     <div className="container">
-                        <Link to="/Projects/ProjectForm"><button type="button" className="btn btn-primary mt-3">New</button></Link>
+                        <Link to="/project/projectForm"><button type="button" className="btn btn-primary mt-3">New</button></Link>
                     </div>
                     <div className="container py-3 fade-in" >
                         <Table headers={this.Headers} settings={this.Settings} />

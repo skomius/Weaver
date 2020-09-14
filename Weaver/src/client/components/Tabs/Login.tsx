@@ -19,7 +19,7 @@ export class Login extends React.Component<{}, {}>{
                             <input type="checkbox" value="remember-me" /> Remember me
                     </label>
                     </div>
-                    <Link to="/Projects"><button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button></Link>
+                    <Link to="/project"><button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button></Link>
                     <p className="mt-5 mb-3 text-muted">© 2017-2020</p>
                 </form>
             </div>

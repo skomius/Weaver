@@ -22,22 +22,22 @@ export class TabsWindow extends React.Component<{}, {}>{
                     <div className="py-5">
                         <ol className="nav nav-tabs">
                             <li>
-                                <NavLink to="/Projects" className="nav-link" activeClassName = "active">Projects</NavLink>
+                                <NavLink to="/project" className="nav-link" activeClassName = "active">Projects</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/Tasks" className="nav-link"  activeClassName = "active">Tasks</NavLink>
+                                <NavLink to="/task" className="nav-link"  activeClassName = "active">Tasks</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/Logs" className="nav-link" activeClassName = "active">Logs</NavLink>
+                                <NavLink to="/logs" className="nav-link" activeClassName = "active">Logs</NavLink>
                             </li>
                         </ol>
                         <Switch>
                                 <Route exact path="/" children={<Login />} />
-                                <Route exact path="/Tasks" children={<Tasks />} />
-                                <Route exact path="/Projects/ProjectForm" children={<ProjectForm />} />
+                                <Route exact path="/task" children={<Tasks />} />
+                                <Route exact path="/project/projectForm" children={<ProjectForm />} />
                                 <Route exact path="/Logs" children={<Logs />} />
-                                <Route exact path="/Projects" render = {(props) => (<Projects {...props}/>)} />
-                                <Route exact path="/Projects/:id" render = {(props) => (<ProjectView {...props}/>)} />
+                                <Route exact path="/project" render = {(props) => (<Projects {...props}/>)} />
+                                <Route path="/project/getProject" render = {(props) => (<ProjectView {...props}/>)} />
                         </Switch>
                     </div>
                 </Router>

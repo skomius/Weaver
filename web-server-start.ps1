@@ -1,2 +1,1 @@
-Set-Location ./Weaver  
-npm run watch-debug
+npm run watch-debug --prefix ./Weaver 

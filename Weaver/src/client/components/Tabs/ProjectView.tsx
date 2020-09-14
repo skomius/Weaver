@@ -1,6 +1,6 @@
 import * as React from "react"
 import axios from "axios"
-import { Link, useParams } from "react-router-dom"
+import { Link, useParams, withRouter } from "react-router-dom"
 import { Projects } from "./Projects"
 import { use } from "passport"
 
@@ -15,7 +15,7 @@ export class ProjectView extends React.Component<any, {project: project}>{
     private project: project
 
     constructor(props: any) {
-        super(props)
+        super(props);
         this.state = {
             project: new project()
         }
@@ -23,9 +23,7 @@ export class ProjectView extends React.Component<any, {project: project}>{
 
     componentDidMount() { 
 
-        console.log("start")
-
-        axios.get<project>("project/getProject", {params:{id: this.getid()}} )
+        axios.post<project>(this.props.location.pathname + this.props.location.search)
             .then(res => {
                 this.setState({
                     project: res.data
@@ -33,11 +31,6 @@ export class ProjectView extends React.Component<any, {project: project}>{
             }).catch( e => {
                 console.error(e)
             })
-    }
-
-    getid(){
-        const { id } = this.props.location.search;
-        return id;
     }
 
     render() {
@@ -54,8 +47,8 @@ export class ProjectView extends React.Component<any, {project: project}>{
                     <h4>User</h4>
                     <p>{this.state.project.user}</p>
                 </div>
-                <Link to="/Projects"><button type="button" id="Delete" className="btn btn-primary">Back</button></Link>
+                <Link to="/project"><button type="button" id="Delete" className="btn btn-primary">Back</button></Link>
             </div>
         )
     }
-} 
+}
